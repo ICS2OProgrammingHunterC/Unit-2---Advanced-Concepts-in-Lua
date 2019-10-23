@@ -35,6 +35,7 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 local playButton
 local creditsButton
+local instructionsButton
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -53,7 +54,11 @@ local function Level1ScreenTransition( )
 end    
 
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
-
+--------------------------------------------------------------------------------------------
+--creating the transition to the instructions screen
+local function InstructionsScreenTransition()
+    composer.gottoScene("instructions", {effect = "zoomInOutFade", time = 1000})
+end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -118,7 +123,21 @@ function scene:create( event )
             onRelease = CreditsTransition
         } ) 
     
-    -- ADD INSTRUCTIONS BUTTON WIDGET
+    ---------------------------------------------------------------------------------------------------
+    -- creating instructions button
+    instructionsButton = widget.newButton(
+        {
+            --set its position on the screen relative to the screen size
+            x = display.contentWidth*2/8,
+            y = display.contentHeight*7/8,
+
+            -- Insert the images here
+            defaultFile = "Images/Instructions Button Unpressed.png",
+            overFile = "Images/Instructions Button Pressed.png",
+
+            -- When the button is released, call the Credits transition function
+            onRelease = InstructionsScreenTransition
+        })
 
     -----------------------------------------------------------------------------------------
 
@@ -127,6 +146,7 @@ function scene:create( event )
     sceneGroup:insert( creditsButton )
     
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
+    sceneGroup:insert( InstructionsScreenTransition)
 
 end -- function scene:create( event )   
 
