@@ -146,7 +146,7 @@ function scene:create( event )
     sceneGroup:insert( creditsButton )
     
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-    sceneGroup:insert( InstructionsScreenTransition)
+    sceneGroup:insert( instructionsButton)
 
 end -- function scene:create( event )   
 
