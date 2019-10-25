@@ -56,8 +56,8 @@ end
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
 --------------------------------------------------------------------------------------------
 --creating the transition to the instructions screen
-local function InstructionsScreenTransition()
-    composer.gottoScene("instructions", {effect = "zoomInOutFade", time = 1000})
+local function InstructionsTransition()
+    composer.gotoScene("instructions", {effect = "zoomInOutFade", time = 1000})
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -128,16 +128,18 @@ function scene:create( event )
     instructionsButton = widget.newButton(
         {
             --set its position on the screen relative to the screen size
-            x = display.contentWidth*2/8,
+            x = display.contentWidth/8,
             y = display.contentHeight*7/8,
 
+            -- set the size 
+
             -- Insert the images here
-            defaultFile = "Images/Instructions Button Unpressed.png",
+            defaultFile = "Images/Instructions Button.png",
             overFile = "Images/Instructions Button Pressed.png",
 
             -- When the button is released, call the Credits transition function
-            onRelease = InstructionsScreenTransition
-        })
+            onRelease = InstructionsTransition
+        } )
 
     -----------------------------------------------------------------------------------------
 
@@ -146,7 +148,7 @@ function scene:create( event )
     sceneGroup:insert( creditsButton )
     
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-    sceneGroup:insert( instructionsButton)
+    sceneGroup:insert( instructionsButton )
 
 end -- function scene:create( event )   
 
