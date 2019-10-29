@@ -32,6 +32,10 @@ local scene = composer.newScene( sceneName )
 -- local variables for the scene
 local bkg
 
+-- sounds for when the scene comes on screen
+local youLose = audio.loadSound("Sounds/Kids Booing.mp3")
+local youLoseSoundChannel
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -83,6 +87,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        youLoseSoundChannel = audio.play(youLose)
     end
 
 end
