@@ -32,6 +32,10 @@ local scene = composer.newScene( sceneName )
 -- local variables for the scene
 local bkg
 
+-- sound for when the scene comes on screen
+local youWinSound = audio.loadSound("Sounds/youWinSound.wav")
+local youWinSoundChannel
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -83,6 +87,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        youWinSoundChannel = audio.play(youWinSound)
     end
 
 end

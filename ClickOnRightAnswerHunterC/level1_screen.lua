@@ -79,10 +79,18 @@ local level1Text
 local alreadyClickedAnswer = false
 
 
+
+
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
+-- Sound Variable for when the user gets the answer corrret
+local correctSound = audio.loadSound("Sounds/CorrrectAnswer.mp3")
+local correctSoundChannel
 
+-- Sound Variable for when the user gets the answer incorrect
+local incorrectSound = audio.loadSound("Sounds/WrongBuzzer.mp3")
+locak incorrectSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -195,6 +203,8 @@ local function TouchListenerAnswer(touch)
             correct.isVisible = true
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
+            --Play the sound for when the user gets the answer correct
+            correctSoundChannel = audio.play(correctSound)
             -- call RestartScene after 1 second
             timer.performWithDelay( 1000, RestartScene )
         end        
@@ -214,6 +224,8 @@ local function TouchListenerWrongAnswer1(touch)
         if (answer ~= tonumber(userAnswer)) then
             -- decrease a life
             lives = lives - 1
+            --play the incorrect answer Sound
+            incorrectSoundChannel = audio.play(incorrectSound)
             -- call RestartScene after 1 second
             timer.performWithDelay( 1000, RestartScene )            
         end        
@@ -234,6 +246,8 @@ local function TouchListenerWrongAnswer2(touch)
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
                 lives = lives - 1
+                --play the incorrect answer Sound
+                incorrectSoundChannel = audio.play(incorrectSound)
                 -- call RestartScene after 1 second
                 timer.performWithDelay( 1000, RestartScene )            
             end        
@@ -254,6 +268,8 @@ end
             if (answer ~= tonumber(userAnswer)) then
                 -- decrease a life
                 lives = lives - 1
+                --play the incorrect answer Sound
+                incorrectSoundChannel = audio.play(incorrectSound)                
                 -- call RestartScene after 1 second
                 timer.performWithDelay( 1000, RestartScene )            
             end        
