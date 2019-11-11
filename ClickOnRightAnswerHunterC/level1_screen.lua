@@ -150,6 +150,7 @@ end
 
 local function WinScreenTransiton( )
     composer.gotoScene( "you_win", {effect = "zoomInOutFade", time = 1000})
+end
 
 -- The function that displays the equation and determines the answer and the wrong answers
 local function DisplayAddEquation()
@@ -178,8 +179,12 @@ local function RestartScene()
     livesText.text = "Number of lives = " .. tostring(lives)
     numberCorrectText.text = "Number correct = " .. tostring(numberCorrect)
 
+    -- if the user has 5 points, go to the you Win screen
+    if (numberCorrect == 5)then
+        composer.gotoScene("you_win")
+
     -- if they have 0 lives, go to the You Lose screen
-    if (lives == 0) then
+    elseif (lives == 0) then
         composer.gotoScene("you_lose")
     else 
 
@@ -201,6 +206,8 @@ local function TouchListenerAnswer(touch)
         -- if the user gets the answer right, display Correct and call RestartSceneRight
         if (answer == tonumber(userAnswer)) then     
             correct.isVisible = true
+            -- play the correct answer sound
+            correctSoundChannel = audio.play(correctSound)
             -- increase the number correct by 1
             numberCorrect = numberCorrect + 1
             --Play the sound for when the user gets the answer correct
@@ -222,6 +229,8 @@ local function TouchListenerWrongAnswer1(touch)
 
 
         if (answer ~= tonumber(userAnswer)) then
+            --play the incorrect sound
+            incorrectSoundChannel = audio.play(incorrectSound)
             -- decrease a life
             lives = lives - 1
             --play the incorrect answer Sound
@@ -249,7 +258,7 @@ local function TouchListenerWrongAnswer2(touch)
                 --play the incorrect answer Sound
                 incorrectSoundChannel = audio.play(incorrectSound)
                 -- call RestartScene after 1 second
-                timer.performWithDelay( 1000, RestartScene )            
+                timer.performWithDelay( 1000, RestartScene )         
             end        
     
         end
@@ -320,20 +329,20 @@ function scene:create( event )
     bkg.height = display.contentHeight
 
     -- create the text object that will hold the add equation. Make it empty for now.
-    addEquationTextObject = display.newText( "", display.contentWidth*1/4, display.contentHeight*2/5, nil, 50 )
+    addEquationTextObject = display.newText( "", display.contentWidth*1/4, display.contentHeight*2/5, nil, 75 )
 
     -- sets the color of the add equation text object
     addEquationTextObject:setTextColor(155/255, 42/255, 198/255)
 
     -- create the text objects that will hold the correct answer and the wrong answers
-    answerTextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 50 )
-    wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 50 )
-    wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 50 )
-    wrongAnswer3TextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 50 )    
-    numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 25)
+    answerTextObject = display.newText("", display.contentWidth*.5, display.contentHeight/2, nil, 60 )
+    wrongAnswer1TextObject = display.newText("", display.contentWidth*.4, display.contentHeight/2, nil, 60 )
+    wrongAnswer2TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 60 )
+    wrongAnswer3TextObject = display.newText("", display.contentWidth*.5, display.contentHeight/2, nil, 60 )    
+    numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
 
     -- create the text object that will hold the number of lives
-    livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 25) 
+    livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
     -- create the text object that will say congratulations, set the colour and then hide it
     congratulationText = display.newText("Good job!", display.contentWidth/2, display.contentHeight*2/5, nil, 50 )
@@ -341,7 +350,7 @@ function scene:create( event )
     congratulationText.isVisible = false
 
     -- create the text object that will say Correct, set the colour and then hide it
-    correct = display.newText("Correct", display.contentWidth/2, display.contentHeight*1/3, nil, 50 )
+    correct = display.newText("Correct", display.contentWidth/2, display.contentHeight*1/3, nil, 75 )
     correct:setTextColor(100/255, 47/255, 210/255)
     correct.isVisible = false
 
