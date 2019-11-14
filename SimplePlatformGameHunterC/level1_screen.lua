@@ -60,10 +60,10 @@ local uArrow
 local lArrow
 
 local motionx = 0
-local RSPEED = 5
-local LSPEED = -5
+local RSPEED = 6
+local LSPEED = -6
 local LINEAR_VELOCITY = -100
-local GRAVITY = 7
+local GRAVITY = 10
 
 local leftW 
 local topW
@@ -76,6 +76,12 @@ local ball3
 local theBall
 
 local questionsAnswered = 0
+
+-----------------------------------------------------------------------------------------
+-- SOOUNDS
+-----------------------------------------------------------------------------------------
+local popSound = audio.loadSound("Sounds/Pop.mp3")
+local popSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
