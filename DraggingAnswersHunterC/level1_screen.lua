@@ -67,6 +67,9 @@ local alternateAnswerBox1PreviousX
 local alternateAnswerBox2PreviousX
 local alternateAnswerBox3PreviousX
 
+local points = 0
+local lives = 2
+
 -- the black box where the user will drag the answer
 local userAnswerBoxPlaceholder
 
