@@ -98,8 +98,6 @@ function scene:create( event )
             x = display.contentWidth/2,
             y = display.contentHeight*7/8,
 
-            playButton:scale(0.5, 0.5)
-
             -- Insert the images here
             defaultFile = "Images/Start Button Unpressed.png",
             overFile = "Images/Start Button Pressed.png",
