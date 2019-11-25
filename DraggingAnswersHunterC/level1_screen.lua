@@ -209,7 +209,7 @@ local function PositionAnswers()
         alternateAnswerBox2.y = display.contentHeight * 0.55
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.85
+        alternateAnswerBox1.y = display.contentHeight * 0.7
 
         --alternateAnswerBox3
         alternateAnswerBox3.y = display.contentHeight * 0.4
